@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>くらしのツール箱</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="くらしのツール箱">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f5f4f0">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #f5f4f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    color: #1a1a18;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wrap { width: 100%; max-width: 420px; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  h1 {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 8px 0 24px;
+    text-align: center;
+  }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: #767570;
+    font-size: 15px;
+    font-family: inherit;
+    padding: 6px 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+  }
+  .back-btn i { font-size: 18px; }
+
+  /* ---- ホームメニュー ---- */
+  .app-title {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    margin: 8px 0 28px;
+  }
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 20px 18px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a18;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+  }
+  .menu-item .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+    color: #fff;
+  }
+  .menu-item .chevron {
+    margin-left: auto;
+    color: #c8c5be;
+    font-size: 20px;
+  }
+  .icon.bg-a { background: #0F6E56; }
+  .icon.bg-b { background: #185FA5; }
+  .icon.bg-c { background: #993C1D; }
+  .icon.bg-d { background: #534AB7; }
+  .icon.bg-e { background: #854F0B; }
+  .icon.bg-f { background: #993556; }
+  .icon.bg-g { background: #A32D2D; }
+
+  .qr-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a18;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .qr-btn i { font-size: 18px; }
+
+  /* ---- 共通：数値変換系（土地の広さ／長さ） ---- */
+  .row { display: flex; gap: 10px; margin-bottom: 14px; align-items: stretch; }
+  input[type=number] {
+    flex: 1;
+    width: 0;
+    font-size: 26px;
+    padding: 14px 14px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fff;
+    color: #1a1a18;
+    font-family: inherit;
+    -moz-appearance: textfield;
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number]::placeholder { color: #c8c5be; }
+  select {
+    width: 150px;
+    font-size: 25.3px;
+    padding: 14px 10px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fff;
+    color: #1a1a18;
+    font-family: inherit;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999'><path d='M4 6l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+  }
+  .swap {
+    display: flex;
+    justify-content: center;
+    margin: 2px 0 16px;
+    color: #999;
+  }
+  .swap i { font-size: 22px; transform: rotate(90deg); display: block; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .card p.label {
+    font-size: 17.25px;
+    color: #767570;
+    margin: 0 0 8px;
+  }
+  .card p.value {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    word-break: break-word;
+  }
+  .note {
+    font-size: 12px;
+    color: #999;
+    margin-top: 22px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* ---- 単価くらべ ---- */
+  .suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 25.3px;
+    color: #767570;
+    min-width: 74px;
+  }
+  .unit-toggle {
+    display: inline-flex;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 130px;
+  }
+  .unit-toggle button {
+    flex: 1;
+    padding: 14px 0;
+    border: none;
+    background: transparent;
+    font-size: 25.3px;
+    color: #767570;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .unit-toggle button.active {
+    background: #1a1a18;
+    color: #fff;
+    font-weight: 600;
+  }
+  .result-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 18px;
+    margin: 6px 0 16px;
+    text-align: center;
+  }
+  .result-card p.label {
+    font-size: 17.25px;
+    color: #767570;
+    margin: 0 0 8px;
+  }
+  .result-card p.value {
+    font-size: 38px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .result-card p.value.empty { color: #c8c5be; }
+  .add-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    background: #1a1a18;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .add-btn:disabled { background: #c8c5be; }
+  .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 4px;
+  }
+  .history-header .title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #767570;
+  }
+  .history-header button.clear {
+    font-size: 13px;
+    color: #999;
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .history-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 12px 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .history-card.cheapest {
+    background: #f0f7ea;
+    box-shadow: inset 0 0 0 1px #a8c988;
+  }
+  .history-card .star { font-size: 18px; line-height: 1; }
+  .history-card .info { flex: 1; min-width: 0; }
+  .history-card .info .input-line {
+    font-size: 15px;
+    color: #767570;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .history-card .price {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a18;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .history-card .price small {
+    font-size: 12px;
+    font-weight: 500;
+    color: #767570;
+    margin-left: 2px;
+  }
+  .history-card .del {
+    background: none;
+    border: none;
+    color: #c8c5be;
+    font-size: 22px;
+    line-height: 1;
+    padding: 4px 6px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .empty-state {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    padding: 24px 0;
+    background: #fff;
+    border-radius: 14px;
+  }
+
+  /* ---- 濃度計算 ---- */
+  .field-label {
+    font-size: 14px;
+    color: #767570;
+    margin: 0 0 6px 2px;
+  }
+  .field-block { margin-bottom: 16px; }
+  input.auto { background: #f0f7ea; }
+
+  /* ---- QR共有モーダル ---- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 10;
+  }
+  .overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+  }
+  .modal p.url {
+    font-size: 12px;
+    color: #767570;
+    word-break: break-all;
+    margin: 14px 0 18px;
+  }
+  #qrcode { display: flex; justify-content: center; }
+  .modal button.close {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f5f4f0;
+    color: #1a1a18;
+    font-family: inherit;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ========== ホーム画面 ========== -->
+  <div id="screen-home" class="screen active">
+    <p class="app-title">くらしのツール箱</p>
+    <div class="menu-list">
+      <button class="menu-item" data-target="screen-land">
+        <span class="icon bg-a"><i class="ti ti-ruler-2"></i></span>
+        土地の広さ
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" data-target="screen-tanka">
+        <span class="icon bg-b"><i class="ti ti-scale"></i></span>
+        単価くらべ
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" data-target="screen-length">
+        <span class="icon bg-c"><i class="ti ti-arrows-horizontal"></i></span>
+        長さ変換
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" data-target="screen-conc">
+        <span class="icon bg-d"><i class="ti ti-droplet"></i></span>
+        濃度計算
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" data-target="screen-weight">
+        <span class="icon bg-e"><i class="ti ti-weight"></i></span>
+        重さ変換
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" data-target="screen-volume">
+        <span class="icon bg-f"><i class="ti ti-bottle"></i></span>
+        容量変換
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" data-target="screen-tsubotanka">
+        <span class="icon bg-g"><i class="ti ti-building"></i></span>
+        坪単価⇔㎡単価
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
+    </div>
+    <button class="qr-btn" id="home-share-open"><i class="ti ti-qrcode"></i>QRコードで送る</button>
+  </div>
+
+  <!-- ========== 機能1: 土地の広さ変換 ========== -->
+  <div id="screen-land" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>土地の広さ変換</h1>
+    <div class="row">
+      <input type="number" id="land-left-val" value="100" step="any">
+      <select id="land-left-unit">
+        <option value="sqm" selected>㎡</option>
+        <option value="tsubo">坪(つぼ)</option>
+        <option value="tatami">畳(じょう)</option>
+        <option value="are">アール</option>
+        <option value="ha">ha</option>
+        <option value="tan">反(たん)</option>
+        <option value="cho">町(ちょう)</option>
+      </select>
+    </div>
+    <div class="swap"><i class="ti ti-arrows-exchange-2"></i></div>
+    <div class="row">
+      <input type="number" id="land-right-val" value="30.25" step="any">
+      <select id="land-right-unit">
+        <option value="sqm">㎡</option>
+        <option value="tsubo" selected>坪(つぼ)</option>
+        <option value="tatami">畳(じょう)</option>
+        <option value="are">アール</option>
+        <option value="ha">ha</option>
+        <option value="tan">反(たん)</option>
+        <option value="cho">町(ちょう)</option>
+      </select>
+    </div>
+    <div id="land-others" class="grid"></div>
+    <p class="note">1坪=400/121㎡、1畳=1坪の1/2で計算(実際の畳サイズは地域差あり)。1反=300坪、1町=3000坪。</p>
+  </div>
+
+  <!-- ========== 機能2: 単価くらべ ========== -->
+  <div id="screen-tanka" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>単価くらべ</h1>
+    <div class="row">
+      <input type="number" id="tanka-price" placeholder="金額" step="any" inputmode="decimal">
+      <div class="suffix">円</div>
+    </div>
+    <div class="row">
+      <input type="number" id="tanka-amount" placeholder="数量" step="any" inputmode="decimal">
+      <div class="unit-toggle" role="tablist">
+        <button type="button" data-unit="g">g</button>
+        <button type="button" data-unit="ml" class="active">mL</button>
+      </div>
+    </div>
+    <div class="result-card">
+      <p class="label">1<span id="tanka-unit-display">mL</span>あたり</p>
+      <p class="value empty" id="tanka-result">¥ —</p>
+    </div>
+    <button class="add-btn" id="tanka-add" disabled>履歴に追加</button>
+    <div class="history-header">
+      <span class="title">履歴</span>
+      <button class="clear" id="tanka-clear-all">すべて削除</button>
+    </div>
+    <div class="history-list" id="tanka-history-list"></div>
+  </div>
+
+  <!-- ========== 機能3: 長さ変換 ========== -->
+  <div id="screen-length" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>長さ変換</h1>
+    <div class="row">
+      <input type="number" id="len-left-val" value="1" step="any">
+      <select id="len-left-unit">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="m" selected>m</option>
+        <option value="km">km</option>
+        <option value="bu">分(ぶ)</option>
+        <option value="sun">寸(すん)</option>
+        <option value="shaku">尺(しゃく)</option>
+        <option value="ken">間(けん)</option>
+        <option value="cho">町(ちょう)</option>
+        <option value="ri">里(り)</option>
+        <option value="inch">インチ</option>
+        <option value="feet">フィート</option>
+        <option value="yard">ヤード</option>
+        <option value="mile">マイル</option>
+      </select>
+    </div>
+    <div class="swap"><i class="ti ti-arrows-exchange-2"></i></div>
+    <div class="row">
+      <input type="number" id="len-right-val" value="3.3" step="any">
+      <select id="len-right-unit">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="m">m</option>
+        <option value="km">km</option>
+        <option value="bu">分(ぶ)</option>
+        <option value="sun">寸(すん)</option>
+        <option value="shaku" selected>尺(しゃく)</option>
+        <option value="ken">間(けん)</option>
+        <option value="cho">町(ちょう)</option>
+        <option value="ri">里(り)</option>
+        <option value="inch">インチ</option>
+        <option value="feet">フィート</option>
+        <option value="yard">ヤード</option>
+        <option value="mile">マイル</option>
+      </select>
+    </div>
+    <div id="len-others" class="grid"></div>
+    <p class="note">尺貫法は1尺=10/33m(約30.303cm)で計算。10分=1寸、10寸=1尺、1間=6尺、1町=60間、1里=36町。ヤード・ポンド法はメートル法の国際基準値を使用。</p>
+  </div>
+
+  <!-- ========== 機能4: 濃度計算 ========== -->
+  <div id="screen-conc" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>濃度計算</h1>
+    <div class="field-block">
+      <p class="field-label">液体の量</p>
+      <div class="row">
+        <input type="number" id="conc-liquid" placeholder="0" step="any" inputmode="decimal">
+        <div class="suffix">mL</div>
+      </div>
+    </div>
+    <div class="field-block">
+      <p class="field-label">混ぜるものの重さ</p>
+      <div class="row">
+        <input type="number" id="conc-solid" placeholder="0" step="any" inputmode="decimal">
+        <div class="suffix">g</div>
+      </div>
+    </div>
+    <div class="field-block">
+      <p class="field-label">濃度</p>
+      <div class="row">
+        <input type="number" id="conc-percent" placeholder="0" step="any" inputmode="decimal">
+        <div class="suffix">%</div>
+      </div>
+    </div>
+    <p class="note">2つの欄に数値を入れると、残り1つが自動計算されます。※液体の密度を1として簡易計算しています。</p>
+  </div>
+
+  <!-- ========== 機能5: 重さ変換 ========== -->
+  <div id="screen-weight" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>重さ変換</h1>
+    <div class="row">
+      <input type="number" id="wt-left-val" value="1" step="any">
+      <select id="wt-left-unit">
+        <option value="g">g</option>
+        <option value="kg" selected>kg</option>
+        <option value="kan">貫(かん)</option>
+        <option value="monme">匁(もんめ)</option>
+        <option value="lb">ポンド</option>
+        <option value="oz">オンス</option>
+      </select>
+    </div>
+    <div class="swap"><i class="ti ti-arrows-exchange-2"></i></div>
+    <div class="row">
+      <input type="number" id="wt-right-val" value="266.67" step="any">
+      <select id="wt-right-unit">
+        <option value="g">g</option>
+        <option value="kg">kg</option>
+        <option value="kan">貫(かん)</option>
+        <option value="monme" selected>匁(もんめ)</option>
+        <option value="lb">ポンド</option>
+        <option value="oz">オンス</option>
+      </select>
+    </div>
+    <div id="wt-others" class="grid"></div>
+    <p class="note">1貫=3.75kg、1匁=3.75g(1貫の1000分の1)で計算。ポンド・オンスは国際基準値(1lb=453.592g、1oz=28.3495g)を使用。</p>
+  </div>
+
+  <!-- ========== 機能6: 容量変換 ========== -->
+  <div id="screen-volume" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>容量変換</h1>
+    <div class="row">
+      <input type="number" id="vol-left-val" value="1" step="any">
+      <select id="vol-left-unit">
+        <option value="ml">mL</option>
+        <option value="l" selected>L</option>
+        <option value="cup">カップ</option>
+        <option value="go">合(ごう)</option>
+        <option value="sho">升(しょう)</option>
+        <option value="to">斗(と)</option>
+        <option value="koku">石(こく)</option>
+      </select>
+    </div>
+    <div class="swap"><i class="ti ti-arrows-exchange-2"></i></div>
+    <div class="row">
+      <input type="number" id="vol-right-val" value="5.56" step="any">
+      <select id="vol-right-unit">
+        <option value="ml">mL</option>
+        <option value="l">L</option>
+        <option value="cup">カップ</option>
+        <option value="go" selected>合(ごう)</option>
+        <option value="sho">升(しょう)</option>
+        <option value="to">斗(と)</option>
+        <option value="koku">石(こく)</option>
+      </select>
+    </div>
+    <div id="vol-others" class="grid"></div>
+    <p class="note">1合=180mL、1升=10合、1斗=10升、1石=10斗として計算(炊飯などで使われる一般的な近似値)。カップは日本の計量カップ基準(1カップ=200mL)。</p>
+  </div>
+
+  <!-- ========== 機能7: 坪単価⇔㎡単価 ========== -->
+  <div id="screen-tsubotanka" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>坪単価⇔㎡単価</h1>
+    <div class="row">
+      <input type="number" id="tt-tsubo-val" value="1000000" step="any">
+      <div class="suffix">円/坪</div>
+    </div>
+    <div class="swap"><i class="ti ti-arrows-exchange-2"></i></div>
+    <div class="row">
+      <input type="number" id="tt-sqm-val" value="302500" step="any">
+      <div class="suffix">円/㎡</div>
+    </div>
+    <p class="note">1坪=400/121㎡で計算。㎡単価=坪単価÷(400/121)、坪単価=㎡単価×(400/121)。</p>
+  </div>
+
+</div>
+
+<!-- ========== 共通QR共有モーダル ========== -->
+<div class="overlay" id="share-overlay">
+  <div class="modal">
+    <div id="qrcode"></div>
+    <p class="url" id="share-url-text"></p>
+    <button class="close" id="share-close">閉じる</button>
+  </div>
+</div>
+
+<script>
+/* ===== 画面切り替え共通処理 ===== */
+(function () {
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
+    var target = document.getElementById(id);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  document.querySelectorAll('[data-target]').forEach(function (btn) {
+    btn.addEventListener('click', function () { showScreen(btn.dataset.target); });
+  });
+})();
+
+/* ===== 共通QR共有モーダル ===== */
+(function () {
+  var overlay = document.getElementById('share-overlay');
+  var qrcodeDiv = document.getElementById('qrcode');
+  var urlText = document.getElementById('share-url-text');
+  document.getElementById('home-share-open').addEventListener('click', function () {
+    var url = window.location.href;
+    qrcodeDiv.innerHTML = '';
+    new QRCode(qrcodeDiv, { text: url, width: 200, height: 200 });
+    urlText.textContent = url;
+    overlay.classList.add('open');
+  });
+  document.getElementById('share-close').addEventListener('click', function () {
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+})();
+
+/* ===== 機能1: 土地の広さ変換 ===== */
+(function () {
+  var SQM_PER_TSUBO = 400 / 121;
+  var factors = { sqm: 1, tsubo: SQM_PER_TSUBO, tatami: SQM_PER_TSUBO / 2, are: 100, ha: 10000, tan: 300 * SQM_PER_TSUBO, cho: 3000 * SQM_PER_TSUBO };
+  var labels = { sqm: '㎡', tsubo: '坪(つぼ)', tatami: '畳(じょう)', are: 'アール', ha: 'ヘクタール', tan: '反(たん)', cho: '町(ちょう)' };
+  var leftVal = document.getElementById('land-left-val');
+  var leftUnit = document.getElementById('land-left-unit');
+  var rightVal = document.getElementById('land-right-val');
+  var rightUnit = document.getElementById('land-right-unit');
+  var others = document.getElementById('land-others');
+
+  function fmt(n) {
+    if (!isFinite(n)) return '-';
+    if (Math.abs(n) >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    if (Math.abs(n) >= 1) return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+  }
+  function renderOthers(sqm, excludeKeys) {
+    others.innerHTML = '';
+    Object.keys(factors).forEach(function (key) {
+      if (excludeKeys.indexOf(key) !== -1) return;
+      var result = sqm / factors[key];
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = '<p class="label">' + labels[key] + '</p><p class="value">' + fmt(result) + '</p>';
+      others.appendChild(card);
+    });
+  }
+  function updateFromLeft() {
+    var v = parseFloat(leftVal.value) || 0;
+    var sqm = v * factors[leftUnit.value];
+    var rv = sqm / factors[rightUnit.value];
+    rightVal.value = Math.round(rv * 1e6) / 1e6;
+    renderOthers(sqm, [leftUnit.value, rightUnit.value]);
+  }
+  function updateFromRight() {
+    var v = parseFloat(rightVal.value) || 0;
+    var sqm = v * factors[rightUnit.value];
+    var lv = sqm / factors[leftUnit.value];
+    leftVal.value = Math.round(lv * 1e6) / 1e6;
+    renderOthers(sqm, [leftUnit.value, rightUnit.value]);
+  }
+  leftVal.addEventListener('input', updateFromLeft);
+  leftUnit.addEventListener('change', updateFromLeft);
+  rightVal.addEventListener('input', updateFromRight);
+  rightUnit.addEventListener('change', updateFromRight);
+  updateFromLeft();
+})();
+
+/* ===== 機能2: 単価くらべ ===== */
+(function () {
+  var STORAGE_HISTORY = 'tanka-history-v1';
+  var STORAGE_UNIT = 'tanka-unit-v1';
+
+  var priceEl = document.getElementById('tanka-price');
+  var amountEl = document.getElementById('tanka-amount');
+  var unitDisplayEl = document.getElementById('tanka-unit-display');
+  var resultEl = document.getElementById('tanka-result');
+  var addBtn = document.getElementById('tanka-add');
+  var historyListEl = document.getElementById('tanka-history-list');
+  var clearAllBtn = document.getElementById('tanka-clear-all');
+  var unitToggleBtns = document.querySelectorAll('#screen-tanka .unit-toggle button');
+
+  var history = [];
+  var currentUnit = 'ml';
+
+  try {
+    var saved = localStorage.getItem(STORAGE_HISTORY);
+    if (saved) history = JSON.parse(saved);
+  } catch (e) {}
+  try {
+    var savedUnit = localStorage.getItem(STORAGE_UNIT);
+    if (savedUnit === 'g' || savedUnit === 'ml') currentUnit = savedUnit;
+  } catch (e) {}
+
+  function saveHistory() {
+    try { localStorage.setItem(STORAGE_HISTORY, JSON.stringify(history)); } catch (e) {}
+  }
+  function saveUnit() {
+    try { localStorage.setItem(STORAGE_UNIT, currentUnit); } catch (e) {}
+  }
+  function unitLabel(u) { return u === 'g' ? 'g' : 'mL'; }
+  function calc(priceVal, amountVal) {
+    var p = parseFloat(priceVal);
+    var a = parseFloat(amountVal);
+    if (!isFinite(p) || !isFinite(a) || p <= 0 || a <= 0) return null;
+    return p / a;
+  }
+  function fmtPrice(n) {
+    if (n >= 100) return n.toFixed(1);
+    if (n >= 10) return n.toFixed(2);
+    return n.toFixed(3);
+  }
+  function updateResult() {
+    unitDisplayEl.textContent = unitLabel(currentUnit);
+    var v = calc(priceEl.value, amountEl.value);
+    if (v === null) {
+      resultEl.textContent = '¥ —';
+      resultEl.classList.add('empty');
+      addBtn.disabled = true;
+    } else {
+      resultEl.textContent = '¥ ' + fmtPrice(v);
+      resultEl.classList.remove('empty');
+      addBtn.disabled = false;
+    }
+  }
+  function renderUnitToggle() {
+    unitToggleBtns.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.unit === currentUnit);
+    });
+  }
+  function renderHistory() {
+    historyListEl.innerHTML = '';
+    if (history.length === 0) {
+      var div = document.createElement('div');
+      div.className = 'empty-state';
+      div.textContent = 'まだ履歴はありません';
+      historyListEl.appendChild(div);
+      return;
+    }
+    var countByUnit = {};
+    var cheapestByUnit = {};
+    history.forEach(function (item, i) {
+      countByUnit[item.unit] = (countByUnit[item.unit] || 0) + 1;
+      if (!(item.unit in cheapestByUnit) || item.unitPrice < history[cheapestByUnit[item.unit]].unitPrice) {
+        cheapestByUnit[item.unit] = i;
+      }
+    });
+    var starIndices = new Set();
+    Object.keys(cheapestByUnit).forEach(function (unit) {
+      var idx = cheapestByUnit[unit];
+      if (countByUnit[unit] >= 2) starIndices.add(idx);
+    });
+    history.forEach(function (item, i) {
+      var card = document.createElement('div');
+      var isCheapest = starIndices.has(i);
+      card.className = 'history-card' + (isCheapest ? ' cheapest' : '');
+      var star = isCheapest ? '<span class="star">⭐</span>' : '';
+      var u = unitLabel(item.unit);
+      card.innerHTML =
+        star +
+        '<div class="info"><div class="input-line">¥' + item.price.toLocaleString() + ' / ' + item.amount + u + '</div></div>' +
+        '<div class="price">¥' + fmtPrice(item.unitPrice) + '<small>/' + u + '</small></div>' +
+        '<button class="del" data-i="' + i + '" aria-label="削除">×</button>';
+      historyListEl.appendChild(card);
+    });
+    historyListEl.querySelectorAll('.del').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var i = parseInt(e.currentTarget.dataset.i, 10);
+        history.splice(i, 1);
+        saveHistory();
+        renderHistory();
+      });
+    });
+  }
+
+  priceEl.addEventListener('input', updateResult);
+  amountEl.addEventListener('input', updateResult);
+  unitToggleBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentUnit = btn.dataset.unit;
+      saveUnit();
+      renderUnitToggle();
+      updateResult();
+    });
+  });
+  addBtn.addEventListener('click', function () {
+    var v = calc(priceEl.value, amountEl.value);
+    if (v === null) return;
+    history.push({
+      price: parseFloat(priceEl.value),
+      amount: parseFloat(amountEl.value),
+      unit: currentUnit,
+      unitPrice: v
+    });
+    saveHistory();
+    priceEl.value = '';
+    amountEl.value = '';
+    updateResult();
+    renderHistory();
+    priceEl.focus();
+  });
+  clearAllBtn.addEventListener('click', function () {
+    if (history.length === 0) return;
+    if (confirm('履歴をすべて削除しますか?')) {
+      history = [];
+      saveHistory();
+      renderHistory();
+    }
+  });
+
+  renderUnitToggle();
+  updateResult();
+  renderHistory();
+})();
+
+/* ===== 機能3: 長さ変換 ===== */
+(function () {
+  var SHAKU = 10 / 33;
+  var factors = {
+    mm: 0.001,
+    cm: 0.01,
+    m: 1,
+    km: 1000,
+    bu: SHAKU / 100,
+    sun: SHAKU / 10,
+    shaku: SHAKU,
+    ken: SHAKU * 6,
+    cho: SHAKU * 6 * 60,
+    ri: SHAKU * 6 * 60 * 36,
+    inch: 0.0254,
+    feet: 0.3048,
+    yard: 0.9144,
+    mile: 1609.344
+  };
+  var labels = {
+    mm: 'mm', cm: 'cm', m: 'm', km: 'km',
+    bu: '分(ぶ)',
+    sun: '寸(すん)',
+    shaku: '尺(しゃく)',
+    ken: '間(けん)',
+    cho: '町(ちょう)',
+    ri: '里(り)',
+    inch: 'インチ', feet: 'フィート', yard: 'ヤード', mile: 'マイル'
+  };
+  var leftVal = document.getElementById('len-left-val');
+  var leftUnit = document.getElementById('len-left-unit');
+  var rightVal = document.getElementById('len-right-val');
+  var rightUnit = document.getElementById('len-right-unit');
+  var others = document.getElementById('len-others');
+
+  function fmt(n) {
+    if (!isFinite(n)) return '-';
+    if (Math.abs(n) >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    if (Math.abs(n) >= 1) return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+  }
+  function renderOthers(m, excludeKeys) {
+    others.innerHTML = '';
+    Object.keys(factors).forEach(function (key) {
+      if (excludeKeys.indexOf(key) !== -1) return;
+      var result = m / factors[key];
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = '<p class="label">' + labels[key] + '</p><p class="value">' + fmt(result) + '</p>';
+      others.appendChild(card);
+    });
+  }
+  function updateFromLeft() {
+    var v = parseFloat(leftVal.value) || 0;
+    var m = v * factors[leftUnit.value];
+    var rv = m / factors[rightUnit.value];
+    rightVal.value = Math.round(rv * 1e6) / 1e6;
+    renderOthers(m, [leftUnit.value, rightUnit.value]);
+  }
+  function updateFromRight() {
+    var v = parseFloat(rightVal.value) || 0;
+    var m = v * factors[rightUnit.value];
+    var lv = m / factors[leftUnit.value];
+    leftVal.value = Math.round(lv * 1e6) / 1e6;
+    renderOthers(m, [leftUnit.value, rightUnit.value]);
+  }
+  leftVal.addEventListener('input', updateFromLeft);
+  leftUnit.addEventListener('change', updateFromLeft);
+  rightVal.addEventListener('input', updateFromRight);
+  rightUnit.addEventListener('change', updateFromRight);
+  updateFromLeft();
+})();
+
+/* ===== 機能4: 濃度計算 ===== */
+(function () {
+  var idMap = { L: 'conc-liquid', S: 'conc-solid', C: 'conc-percent' };
+  var keys = ['L', 'S', 'C'];
+  var order = [];
+
+  function touch(key) {
+    order = order.filter(function (k) { return k !== key; });
+    order.unshift(key);
+    if (order.length > 3) order.pop();
+  }
+  function getVal(key) {
+    var v = parseFloat(document.getElementById(idMap[key]).value);
+    return isFinite(v) ? v : null;
+  }
+  function fmtNum(n) {
+    if (!isFinite(n)) return '';
+    var r = Math.round(n * 1000) / 1000;
+    return String(r);
+  }
+  function recompute(sourceKey) {
+    touch(sourceKey);
+    keys.forEach(function (k) { document.getElementById(idMap[k]).classList.remove('auto'); });
+    if (order.length < 2) return;
+    var recentTwo = [order[0], order[1]];
+    var target = keys.filter(function (k) { return recentTwo.indexOf(k) === -1; })[0];
+    var vals = {};
+    keys.forEach(function (k) { vals[k] = getVal(k); });
+    if (vals[recentTwo[0]] === null || vals[recentTwo[1]] === null) {
+      document.getElementById(idMap[target]).value = '';
+      return;
+    }
+    var L = vals.L, S = vals.S, C = vals.C;
+    var result = null;
+    if (target === 'C') {
+      if (L + S > 0 && L >= 0 && S >= 0) result = S / (L + S) * 100;
+    } else if (target === 'L') {
+      if (C > 0 && C <= 100 && S >= 0) {
+        result = S * (100 - C) / C;
+        if (result < 0) result = null;
+      }
+    } else if (target === 'S') {
+      if (C >= 0 && C < 100 && L >= 0) {
+        result = L * C / (100 - C);
+        if (result < 0) result = null;
+      }
+    }
+    var targetEl = document.getElementById(idMap[target]);
+    if (result === null || !isFinite(result)) {
+      targetEl.value = '';
+    } else {
+      targetEl.value = fmtNum(result);
+      targetEl.classList.add('auto');
+    }
+  }
+  keys.forEach(function (k) {
+    document.getElementById(idMap[k]).addEventListener('input', function () { recompute(k); });
+  });
+})();
+
+/* ===== 機能5: 重さ変換 ===== */
+(function () {
+  var factors = {
+    g: 1,
+    kg: 1000,
+    kan: 3750,
+    monme: 3.75,
+    lb: 453.592,
+    oz: 28.3495
+  };
+  var labels = { g: 'g', kg: 'kg', kan: '貫(かん)', monme: '匁(もんめ)', lb: 'ポンド', oz: 'オンス' };
+  var leftVal = document.getElementById('wt-left-val');
+  var leftUnit = document.getElementById('wt-left-unit');
+  var rightVal = document.getElementById('wt-right-val');
+  var rightUnit = document.getElementById('wt-right-unit');
+  var others = document.getElementById('wt-others');
+
+  function fmt(n) {
+    if (!isFinite(n)) return '-';
+    if (Math.abs(n) >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    if (Math.abs(n) >= 1) return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+  }
+  function renderOthers(g, excludeKeys) {
+    others.innerHTML = '';
+    Object.keys(factors).forEach(function (key) {
+      if (excludeKeys.indexOf(key) !== -1) return;
+      var result = g / factors[key];
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = '<p class="label">' + labels[key] + '</p><p class="value">' + fmt(result) + '</p>';
+      others.appendChild(card);
+    });
+  }
+  function updateFromLeft() {
+    var v = parseFloat(leftVal.value) || 0;
+    var g = v * factors[leftUnit.value];
+    var rv = g / factors[rightUnit.value];
+    rightVal.value = Math.round(rv * 1e6) / 1e6;
+    renderOthers(g, [leftUnit.value, rightUnit.value]);
+  }
+  function updateFromRight() {
+    var v = parseFloat(rightVal.value) || 0;
+    var g = v * factors[rightUnit.value];
+    var lv = g / factors[leftUnit.value];
+    leftVal.value = Math.round(lv * 1e6) / 1e6;
+    renderOthers(g, [leftUnit.value, rightUnit.value]);
+  }
+  leftVal.addEventListener('input', updateFromLeft);
+  leftUnit.addEventListener('change', updateFromLeft);
+  rightVal.addEventListener('input', updateFromRight);
+  rightUnit.addEventListener('change', updateFromRight);
+  updateFromLeft();
+})();
+
+/* ===== 機能6: 容量変換 ===== */
+(function () {
+  var factors = {
+    ml: 1,
+    l: 1000,
+    cup: 200,
+    go: 180,
+    sho: 1800,
+    to: 18000,
+    koku: 180000
+  };
+  var labels = { ml: 'mL', l: 'L', cup: 'カップ', go: '合(ごう)', sho: '升(しょう)', to: '斗(と)', koku: '石(こく)' };
+  var leftVal = document.getElementById('vol-left-val');
+  var leftUnit = document.getElementById('vol-left-unit');
+  var rightVal = document.getElementById('vol-right-val');
+  var rightUnit = document.getElementById('vol-right-unit');
+  var others = document.getElementById('vol-others');
+
+  function fmt(n) {
+    if (!isFinite(n)) return '-';
+    if (Math.abs(n) >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    if (Math.abs(n) >= 1) return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
+    return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+  }
+  function renderOthers(ml, excludeKeys) {
+    others.innerHTML = '';
+    Object.keys(factors).forEach(function (key) {
+      if (excludeKeys.indexOf(key) !== -1) return;
+      var result = ml / factors[key];
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = '<p class="label">' + labels[key] + '</p><p class="value">' + fmt(result) + '</p>';
+      others.appendChild(card);
+    });
+  }
+  function updateFromLeft() {
+    var v = parseFloat(leftVal.value) || 0;
+    var ml = v * factors[leftUnit.value];
+    var rv = ml / factors[rightUnit.value];
+    rightVal.value = Math.round(rv * 1e6) / 1e6;
+    renderOthers(ml, [leftUnit.value, rightUnit.value]);
+  }
+  function updateFromRight() {
+    var v = parseFloat(rightVal.value) || 0;
+    var ml = v * factors[rightUnit.value];
+    var lv = ml / factors[leftUnit.value];
+    leftVal.value = Math.round(lv * 1e6) / 1e6;
+    renderOthers(ml, [leftUnit.value, rightUnit.value]);
+  }
+  leftVal.addEventListener('input', updateFromLeft);
+  leftUnit.addEventListener('change', updateFromLeft);
+  rightVal.addEventListener('input', updateFromRight);
+  rightUnit.addEventListener('change', updateFromRight);
+  updateFromLeft();
+})();
+
+/* ===== 機能7: 坪単価⇔㎡単価 ===== */
+(function () {
+  var SQM_PER_TSUBO = 400 / 121;
+  var tsuboVal = document.getElementById('tt-tsubo-val');
+  var sqmVal = document.getElementById('tt-sqm-val');
+
+  function updateFromTsubo() {
+    var v = parseFloat(tsuboVal.value) || 0;
+    var sv = v / SQM_PER_TSUBO;
+    sqmVal.value = Math.round(sv * 100) / 100;
+  }
+  function updateFromSqm() {
+    var v = parseFloat(sqmVal.value) || 0;
+    var tv = v * SQM_PER_TSUBO;
+    tsuboVal.value = Math.round(tv * 100) / 100;
+  }
+  tsuboVal.addEventListener('input', updateFromTsubo);
+  sqmVal.addEventListener('input', updateFromSqm);
+  updateFromTsubo();
+})();
+</script>
+</body>
+</html>
