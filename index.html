@@ -108,6 +108,7 @@
   .icon.bg-f { background: #993556; }
   .icon.bg-g { background: #A32D2D; }
   .icon.bg-h { background: #0E7C86; }
+  .icon.bg-i { background: #6B7A2B; }
 
   .qr-btn {
     display: flex;
@@ -444,6 +445,11 @@
         トイレットペーパー比較
         <span class="chevron"><i class="ti ti-chevron-right"></i></span>
       </button>
+      <button class="menu-item" data-target="screen-tissue">
+        <span class="icon bg-i"><i class="ti ti-box"></i></span>
+        ティッシュ比較(二枚組)
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
     </div>
     <button class="qr-btn" id="home-share-open"><i class="ti ti-qrcode"></i>QRコードで送る</button>
   </div>
@@ -696,6 +702,35 @@
     </div>
     <div class="history-list" id="tp-history-list"></div>
     <p class="note">ダブルは1mあたりの紙の量がシングルの約2倍とみなし、長さを2倍換算した上で比較しています。</p>
+  </div>
+
+  <!-- ========== 機能9: ティッシュ比較(二枚組) ========== -->
+  <div id="screen-tissue" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>ティッシュ比較(二枚組)</h1>
+    <div class="row">
+      <input type="number" id="ts-price" placeholder="金額" step="any" inputmode="decimal">
+      <div class="suffix">円</div>
+    </div>
+    <div class="row">
+      <input type="number" id="ts-boxes" placeholder="箱数" step="any" inputmode="decimal">
+      <div class="suffix">箱</div>
+    </div>
+    <div class="row">
+      <input type="number" id="ts-count" placeholder="1箱の組数" step="any" inputmode="decimal">
+      <div class="suffix">組</div>
+    </div>
+    <div class="result-card">
+      <p class="label">1組あたり</p>
+      <p class="value empty" id="ts-result">¥ —</p>
+    </div>
+    <button class="add-btn" id="ts-add" disabled>履歴に追加</button>
+    <div class="history-header">
+      <span class="title">履歴</span>
+      <button class="clear" id="ts-clear-all">すべて削除</button>
+    </div>
+    <div class="history-list" id="ts-history-list"></div>
+    <p class="note">箱数×1箱の組数=総組数として計算。紙1枚あたりの大きさは考慮していません。</p>
   </div>
 
 </div>
@@ -1334,6 +1369,122 @@
   });
 
   renderPlyToggle();
+  updateResult();
+  renderHistory();
+})();
+
+/* ===== 機能9: ティッシュ比較(二枚組) ===== */
+(function () {
+  var STORAGE_HISTORY = 'ts-history-v1';
+
+  var priceEl = document.getElementById('ts-price');
+  var boxesEl = document.getElementById('ts-boxes');
+  var countEl = document.getElementById('ts-count');
+  var resultEl = document.getElementById('ts-result');
+  var addBtn = document.getElementById('ts-add');
+  var historyListEl = document.getElementById('ts-history-list');
+  var clearAllBtn = document.getElementById('ts-clear-all');
+
+  var history = [];
+
+  try {
+    var saved = localStorage.getItem(STORAGE_HISTORY);
+    if (saved) history = JSON.parse(saved);
+  } catch (e) {}
+
+  function saveHistory() {
+    try { localStorage.setItem(STORAGE_HISTORY, JSON.stringify(history)); } catch (e) {}
+  }
+  function calc(priceVal, boxesVal, countVal) {
+    var p = parseFloat(priceVal);
+    var b = parseFloat(boxesVal);
+    var c = parseFloat(countVal);
+    if (!isFinite(p) || !isFinite(b) || !isFinite(c) || p <= 0 || b <= 0 || c <= 0) return null;
+    var totalCount = b * c;
+    return p / totalCount;
+  }
+  function fmtPrice(n) {
+    if (n >= 100) return n.toFixed(1);
+    if (n >= 10) return n.toFixed(2);
+    return n.toFixed(3);
+  }
+  function updateResult() {
+    var v = calc(priceEl.value, boxesEl.value, countEl.value);
+    if (v === null) {
+      resultEl.textContent = '¥ —';
+      resultEl.classList.add('empty');
+      addBtn.disabled = true;
+    } else {
+      resultEl.textContent = '¥ ' + fmtPrice(v);
+      resultEl.classList.remove('empty');
+      addBtn.disabled = false;
+    }
+  }
+  function renderHistory() {
+    historyListEl.innerHTML = '';
+    if (history.length === 0) {
+      var div = document.createElement('div');
+      div.className = 'empty-state';
+      div.textContent = 'まだ履歴はありません';
+      historyListEl.appendChild(div);
+      return;
+    }
+    var cheapestIdx = 0;
+    history.forEach(function (item, i) {
+      if (item.unitPrice < history[cheapestIdx].unitPrice) cheapestIdx = i;
+    });
+    var showStar = history.length >= 2;
+    history.forEach(function (item, i) {
+      var card = document.createElement('div');
+      var isCheapest = showStar && i === cheapestIdx;
+      card.className = 'history-card' + (isCheapest ? ' cheapest' : '');
+      var star = isCheapest ? '<span class="star">⭐</span>' : '';
+      card.innerHTML =
+        star +
+        '<div class="info"><div class="input-line">¥' + item.price.toLocaleString() + ' / ' + item.boxes + '箱×' + item.count + '組</div></div>' +
+        '<div class="price">¥' + fmtPrice(item.unitPrice) + '<small>/組</small></div>' +
+        '<button class="del" data-i="' + i + '" aria-label="削除">×</button>';
+      historyListEl.appendChild(card);
+    });
+    historyListEl.querySelectorAll('.del').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var i = parseInt(e.currentTarget.dataset.i, 10);
+        history.splice(i, 1);
+        saveHistory();
+        renderHistory();
+      });
+    });
+  }
+
+  priceEl.addEventListener('input', updateResult);
+  boxesEl.addEventListener('input', updateResult);
+  countEl.addEventListener('input', updateResult);
+  addBtn.addEventListener('click', function () {
+    var v = calc(priceEl.value, boxesEl.value, countEl.value);
+    if (v === null) return;
+    history.push({
+      price: parseFloat(priceEl.value),
+      boxes: parseFloat(boxesEl.value),
+      count: parseFloat(countEl.value),
+      unitPrice: v
+    });
+    saveHistory();
+    priceEl.value = '';
+    boxesEl.value = '';
+    countEl.value = '';
+    updateResult();
+    renderHistory();
+    priceEl.focus();
+  });
+  clearAllBtn.addEventListener('click', function () {
+    if (history.length === 0) return;
+    if (confirm('履歴をすべて削除しますか?')) {
+      history = [];
+      saveHistory();
+      renderHistory();
+    }
+  });
+
   updateResult();
   renderHistory();
 })();
