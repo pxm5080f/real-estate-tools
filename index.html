@@ -107,6 +107,7 @@
   .icon.bg-e { background: #854F0B; }
   .icon.bg-f { background: #993556; }
   .icon.bg-g { background: #A32D2D; }
+  .icon.bg-h { background: #0E7C86; }
 
   .qr-btn {
     display: flex;
@@ -438,6 +439,11 @@
         坪単価⇔㎡単価
         <span class="chevron"><i class="ti ti-chevron-right"></i></span>
       </button>
+      <button class="menu-item" data-target="screen-toilet">
+        <span class="icon bg-h"><i class="ti ti-roll"></i></span>
+        トイレットペーパー比較
+        <span class="chevron"><i class="ti ti-chevron-right"></i></span>
+      </button>
     </div>
     <button class="qr-btn" id="home-share-open"><i class="ti ti-qrcode"></i>QRコードで送る</button>
   </div>
@@ -655,6 +661,41 @@
       <div class="suffix">円/㎡</div>
     </div>
     <p class="note">1坪=400/121㎡で計算。㎡単価=坪単価÷(400/121)、坪単価=㎡単価×(400/121)。</p>
+  </div>
+
+  <!-- ========== 機能8: トイレットペーパー比較 ========== -->
+  <div id="screen-toilet" class="screen">
+    <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
+    <h1>トイレットペーパー比較</h1>
+    <div class="row">
+      <input type="number" id="tp-price" placeholder="金額" step="any" inputmode="decimal">
+      <div class="suffix">円</div>
+    </div>
+    <div class="row">
+      <input type="number" id="tp-rolls" placeholder="ロール数" step="any" inputmode="decimal">
+      <div class="suffix">ロール</div>
+    </div>
+    <div class="row">
+      <input type="number" id="tp-length" placeholder="1ロールの長さ" step="any" inputmode="decimal">
+      <div class="suffix">m</div>
+    </div>
+    <div class="row">
+      <div class="unit-toggle" role="tablist" style="width:100%;min-width:0;">
+        <button type="button" data-ply="single" class="active">シングル</button>
+        <button type="button" data-ply="double">ダブル</button>
+      </div>
+    </div>
+    <div class="result-card">
+      <p class="label">シングル換算 1mあたり</p>
+      <p class="value empty" id="tp-result">¥ —</p>
+    </div>
+    <button class="add-btn" id="tp-add" disabled>履歴に追加</button>
+    <div class="history-header">
+      <span class="title">履歴</span>
+      <button class="clear" id="tp-clear-all">すべて削除</button>
+    </div>
+    <div class="history-list" id="tp-history-list"></div>
+    <p class="note">ダブルは1mあたりの紙の量がシングルの約2倍とみなし、長さを2倍換算した上で比較しています。</p>
   </div>
 
 </div>
@@ -1161,6 +1202,140 @@
   tsuboVal.addEventListener('input', updateFromTsubo);
   sqmVal.addEventListener('input', updateFromSqm);
   updateFromTsubo();
+})();
+
+/* ===== 機能8: トイレットペーパー比較 ===== */
+(function () {
+  var STORAGE_HISTORY = 'tp-history-v1';
+
+  var priceEl = document.getElementById('tp-price');
+  var rollsEl = document.getElementById('tp-rolls');
+  var lengthEl = document.getElementById('tp-length');
+  var resultEl = document.getElementById('tp-result');
+  var addBtn = document.getElementById('tp-add');
+  var historyListEl = document.getElementById('tp-history-list');
+  var clearAllBtn = document.getElementById('tp-clear-all');
+  var plyToggleBtns = document.querySelectorAll('#screen-toilet .unit-toggle button');
+
+  var history = [];
+  var currentPly = 'single';
+
+  try {
+    var saved = localStorage.getItem(STORAGE_HISTORY);
+    if (saved) history = JSON.parse(saved);
+  } catch (e) {}
+
+  function saveHistory() {
+    try { localStorage.setItem(STORAGE_HISTORY, JSON.stringify(history)); } catch (e) {}
+  }
+  function plyLabel(p) { return p === 'double' ? 'ダブル' : 'シングル'; }
+  function calc(priceVal, rollsVal, lengthVal, ply) {
+    var p = parseFloat(priceVal);
+    var r = parseFloat(rollsVal);
+    var l = parseFloat(lengthVal);
+    if (!isFinite(p) || !isFinite(r) || !isFinite(l) || p <= 0 || r <= 0 || l <= 0) return null;
+    var totalLength = r * l;
+    var convertedLength = ply === 'double' ? totalLength * 2 : totalLength;
+    return { unitPrice: p / convertedLength, totalLength: totalLength };
+  }
+  function fmtPrice(n) {
+    if (n >= 100) return n.toFixed(1);
+    if (n >= 10) return n.toFixed(2);
+    return n.toFixed(3);
+  }
+  function updateResult() {
+    var v = calc(priceEl.value, rollsEl.value, lengthEl.value, currentPly);
+    if (v === null) {
+      resultEl.textContent = '¥ —';
+      resultEl.classList.add('empty');
+      addBtn.disabled = true;
+    } else {
+      resultEl.textContent = '¥ ' + fmtPrice(v.unitPrice);
+      resultEl.classList.remove('empty');
+      addBtn.disabled = false;
+    }
+  }
+  function renderPlyToggle() {
+    plyToggleBtns.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.ply === currentPly);
+    });
+  }
+  function renderHistory() {
+    historyListEl.innerHTML = '';
+    if (history.length === 0) {
+      var div = document.createElement('div');
+      div.className = 'empty-state';
+      div.textContent = 'まだ履歴はありません';
+      historyListEl.appendChild(div);
+      return;
+    }
+    var cheapestIdx = 0;
+    history.forEach(function (item, i) {
+      if (item.unitPrice < history[cheapestIdx].unitPrice) cheapestIdx = i;
+    });
+    var showStar = history.length >= 2;
+    history.forEach(function (item, i) {
+      var card = document.createElement('div');
+      var isCheapest = showStar && i === cheapestIdx;
+      card.className = 'history-card' + (isCheapest ? ' cheapest' : '');
+      var star = isCheapest ? '<span class="star">⭐</span>' : '';
+      card.innerHTML =
+        star +
+        '<div class="info"><div class="input-line">¥' + item.price.toLocaleString() + ' / ' + item.rolls + 'ロール×' + item.length + 'm(' + plyLabel(item.ply) + ')</div></div>' +
+        '<div class="price">¥' + fmtPrice(item.unitPrice) + '<small>/mシングル換算</small></div>' +
+        '<button class="del" data-i="' + i + '" aria-label="削除">×</button>';
+      historyListEl.appendChild(card);
+    });
+    historyListEl.querySelectorAll('.del').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var i = parseInt(e.currentTarget.dataset.i, 10);
+        history.splice(i, 1);
+        saveHistory();
+        renderHistory();
+      });
+    });
+  }
+
+  priceEl.addEventListener('input', updateResult);
+  rollsEl.addEventListener('input', updateResult);
+  lengthEl.addEventListener('input', updateResult);
+  plyToggleBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentPly = btn.dataset.ply;
+      renderPlyToggle();
+      updateResult();
+    });
+  });
+  addBtn.addEventListener('click', function () {
+    var v = calc(priceEl.value, rollsEl.value, lengthEl.value, currentPly);
+    if (v === null) return;
+    history.push({
+      price: parseFloat(priceEl.value),
+      rolls: parseFloat(rollsEl.value),
+      length: parseFloat(lengthEl.value),
+      ply: currentPly,
+      unitPrice: v.unitPrice
+    });
+    saveHistory();
+    priceEl.value = '';
+    rollsEl.value = '';
+    lengthEl.value = '';
+    updateResult();
+    renderHistory();
+    priceEl.focus();
+  });
+  clearAllBtn.addEventListener('click', function () {
+    if (history.length === 0) return;
+    if (confirm('履歴をすべて削除しますか?')) {
+      history = [];
+      saveHistory();
+      renderHistory();
+    }
+  });
+
+  renderPlyToggle();
+  updateResult();
+  renderHistory();
 })();
 </script>
 </body>
