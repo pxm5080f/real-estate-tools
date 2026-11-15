@@ -356,6 +356,39 @@
   }
   .field-block { margin-bottom: 16px; }
   input.auto { background: #f0f7ea; }
+  .unit-toggle.sm button { font-size: 18px; }
+  .conc-pane { display: none; }
+  .conc-pane.active { display: block; }
+  .conc-modebar { margin-bottom: 20px; }
+  .conc-def-desc {
+    font-size: 12px;
+    color: #767570;
+    line-height: 1.6;
+    margin: 8px 2px 18px;
+  }
+  .chip-row {
+    display: flex;
+    gap: 8px;
+    margin: -6px 0 16px;
+  }
+  .chip {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a18;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .dil-msg {
+    font-size: 13px;
+    color: #A32D2D;
+    min-height: 20px;
+    margin: -4px 2px 8px;
+  }
 
   /* ---- QR共有モーダル ---- */
   .overlay {
@@ -565,28 +598,83 @@
   <div id="screen-conc" class="screen">
     <button class="back-btn" data-target="screen-home"><i class="ti ti-chevron-left"></i>戻る</button>
     <h1>濃度計算</h1>
-    <div class="field-block">
-      <p class="field-label">液体の量</p>
-      <div class="row">
-        <input type="number" id="conc-liquid" placeholder="0" step="any" inputmode="decimal">
-        <div class="suffix">mL</div>
+    <div class="conc-modebar">
+      <div class="unit-toggle" id="conc-mode-toggle" role="tablist" style="width:100%;min-width:0;">
+        <button type="button" data-mode="pct" class="active">濃度(%)</button>
+        <button type="button" data-mode="dil">希釈倍率</button>
       </div>
     </div>
-    <div class="field-block">
-      <p class="field-label">混ぜるものの重さ</p>
-      <div class="row">
-        <input type="number" id="conc-solid" placeholder="0" step="any" inputmode="decimal">
-        <div class="suffix">g</div>
+
+    <div id="conc-pane-pct" class="conc-pane active">
+      <div class="field-block">
+        <p class="field-label">液体の量</p>
+        <div class="row">
+          <input type="number" id="conc-liquid" placeholder="0" step="any" inputmode="decimal">
+          <div class="suffix">mL</div>
+        </div>
       </div>
-    </div>
-    <div class="field-block">
-      <p class="field-label">濃度</p>
-      <div class="row">
-        <input type="number" id="conc-percent" placeholder="0" step="any" inputmode="decimal">
-        <div class="suffix">%</div>
+      <div class="field-block">
+        <p class="field-label">混ぜるものの重さ</p>
+        <div class="row">
+          <input type="number" id="conc-solid" placeholder="0" step="any" inputmode="decimal">
+          <div class="suffix">g</div>
+        </div>
       </div>
+      <div class="field-block">
+        <p class="field-label">濃度</p>
+        <div class="row">
+          <input type="number" id="conc-percent" placeholder="0" step="any" inputmode="decimal">
+          <div class="suffix">%</div>
+        </div>
+      </div>
+      <p class="note">2つの欄に数値を入れると、残り1つが自動計算されます。※液体の密度を1として簡易計算しています。</p>
     </div>
-    <p class="note">2つの欄に数値を入れると、残り1つが自動計算されます。※液体の密度を1として簡易計算しています。</p>
+
+    <div id="conc-pane-dil" class="conc-pane">
+      <div class="field-block">
+        <p class="field-label">「○倍」の意味</p>
+        <div class="unit-toggle sm" id="dil-def-toggle" role="tablist" style="width:100%;min-width:0;">
+          <button type="button" data-def="total" class="active">①全体量基準</button>
+          <button type="button" data-def="water">②水量基準</button>
+        </div>
+        <p class="conc-def-desc" id="dil-def-desc"></p>
+      </div>
+      <div class="field-block">
+        <p class="field-label">水の量(散布液の量)</p>
+        <div class="row">
+          <input type="number" id="dil-water" placeholder="0" step="any" inputmode="decimal">
+          <div class="unit-toggle" id="dil-water-unit" role="tablist">
+            <button type="button" data-unit="ml">mL</button>
+            <button type="button" data-unit="l" class="active">L</button>
+          </div>
+        </div>
+        <div class="chip-row" id="dil-chips">
+          <button type="button" class="chip" data-l="10">10L</button>
+          <button type="button" class="chip" data-l="20">20L</button>
+          <button type="button" class="chip" data-l="100">100L</button>
+          <button type="button" class="chip" data-l="200">200L</button>
+        </div>
+      </div>
+      <div class="field-block">
+        <p class="field-label">倍率</p>
+        <div class="row">
+          <input type="number" id="dil-ratio" placeholder="0" step="any" inputmode="decimal">
+          <div class="suffix">倍</div>
+        </div>
+      </div>
+      <div class="field-block">
+        <p class="field-label">原液・薬剤の量</p>
+        <div class="row">
+          <input type="number" id="dil-drug" placeholder="0" step="any" inputmode="decimal">
+          <div class="unit-toggle" id="dil-drug-unit" role="tablist">
+            <button type="button" data-unit="g" class="active">g</button>
+            <button type="button" data-unit="ml">mL</button>
+          </div>
+        </div>
+      </div>
+      <p class="dil-msg" id="dil-msg"></p>
+      <p class="note">3つのうち、2つの欄に数値を入れると、残り1つが自動計算されます。薬剤の量は切り捨てて表示します(1以上は小数第1位まで、1未満は小数第2位まで)。<br>※水・原液とも密度を1として簡易計算しています。粉末の体積は無視しています。<br>※散布する際は、必ず農薬ラベルに記載された使用方法(希釈倍数・散布液量・使用時期・使用回数)に従ってください。この計算は目安です。</p>
+    </div>
   </div>
 
   <!-- ========== 機能5: 重さ変換 ========== -->
@@ -1105,6 +1193,175 @@
   keys.forEach(function (k) {
     document.getElementById(idMap[k]).addEventListener('input', function () { recompute(k); });
   });
+})();
+
+/* ===== 機能4-b: 濃度計算(希釈倍率モード) ===== */
+(function () {
+  var STORAGE_MODE = 'conc-mode-v1';
+  var STORAGE_DEF = 'dil-def-v1';
+  var idMap = { W: 'dil-water', R: 'dil-ratio', D: 'dil-drug' };
+  var keys = ['W', 'R', 'D'];
+  var order = [];
+  var mode = 'pct';
+  var def = 'total';
+  var waterUnit = 'l';
+
+  var modeBtns = document.querySelectorAll('#conc-mode-toggle button');
+  var defBtns = document.querySelectorAll('#dil-def-toggle button');
+  var waterUnitBtns = document.querySelectorAll('#dil-water-unit button');
+  var drugUnitBtns = document.querySelectorAll('#dil-drug-unit button');
+  var chipBtns = document.querySelectorAll('#dil-chips .chip');
+  var paneP = document.getElementById('conc-pane-pct');
+  var paneD = document.getElementById('conc-pane-dil');
+  var descEl = document.getElementById('dil-def-desc');
+  var msgEl = document.getElementById('dil-msg');
+
+  try {
+    var sm = localStorage.getItem(STORAGE_MODE);
+    if (sm === 'pct' || sm === 'dil') mode = sm;
+    var sd = localStorage.getItem(STORAGE_DEF);
+    if (sd === 'total' || sd === 'water') def = sd;
+  } catch (e) {}
+
+  function el(k) { return document.getElementById(idMap[k]); }
+  function getVal(k) {
+    var raw = el(k).value;
+    if (raw === '') return null;
+    var v = parseFloat(raw);
+    return isFinite(v) ? v : null;
+  }
+  function touch(k) {
+    order = order.filter(function (x) { return x !== k; });
+    order.unshift(k);
+    if (order.length > 3) order.pop();
+  }
+  function fmtNum(n) {
+    if (!isFinite(n)) return '';
+    return String(Math.round(n * 1000) / 1000);
+  }
+  function floorDrug(n) {
+    if (n >= 1) return String(Math.floor(n * 10 + 1e-9) / 10);
+    return String(Math.floor(n * 100 + 1e-9) / 100);
+  }
+  function waterToMl(v) { return waterUnit === 'l' ? v * 1000 : v; }
+  function mlToWaterUnit(ml) { return waterUnit === 'l' ? ml / 1000 : ml; }
+
+  function setDescription() {
+    if (def === 'total') {
+      descEl.textContent = '原液1に対して、混ぜた全体が○倍になる考え方です(例:100倍 → 原液1:水99)。一般的な表記です。';
+    } else {
+      descEl.textContent = '原液1に対して、水が○倍になる考え方です(例:100倍 → 原液1:水100)。簡易的な考え方です。';
+    }
+  }
+
+  function minRatio() { return def === 'total' ? 1 : 0; }
+
+  function recompute() {
+    keys.forEach(function (k) { el(k).classList.remove('auto'); });
+    msgEl.textContent = '';
+    if (order.length < 2) return;
+    var recentTwo = [order[0], order[1]];
+    var target = keys.filter(function (k) { return recentTwo.indexOf(k) === -1; })[0];
+    var vals = {};
+    keys.forEach(function (k) { vals[k] = getVal(k); });
+    if (vals[recentTwo[0]] === null || vals[recentTwo[1]] === null) {
+      el(target).value = '';
+      return;
+    }
+    var waterMl = vals.W === null ? null : waterToMl(vals.W);
+    var ratio = vals.R;
+    var drug = vals.D;
+    var result = null;
+
+    if (target !== 'R' && ratio !== null && ratio <= minRatio()) {
+      msgEl.textContent = def === 'total' ? '倍率は1より大きい数を入力してください(例:100)' : '倍率は0より大きい数を入力してください(例:100)';
+      el(target).value = '';
+      return;
+    }
+
+    if (target === 'D') {
+      if (waterMl >= 0) {
+        result = def === 'total' ? waterMl / (ratio - 1) : waterMl / ratio;
+      }
+    } else if (target === 'W') {
+      if (drug >= 0) {
+        var wMl = def === 'total' ? drug * (ratio - 1) : drug * ratio;
+        result = mlToWaterUnit(wMl);
+      }
+    } else if (target === 'R') {
+      if (waterMl >= 0 && drug > 0) {
+        result = def === 'total' ? waterMl / drug + 1 : waterMl / drug;
+      }
+    }
+
+    var targetEl = el(target);
+    if (result === null || !isFinite(result) || result < 0) {
+      targetEl.value = '';
+      return;
+    }
+    targetEl.value = target === 'D' ? floorDrug(result) : fmtNum(result);
+    targetEl.classList.add('auto');
+  }
+
+  function renderMode() {
+    modeBtns.forEach(function (b) { b.classList.toggle('active', b.dataset.mode === mode); });
+    paneP.classList.toggle('active', mode === 'pct');
+    paneD.classList.toggle('active', mode === 'dil');
+  }
+  function renderDef() {
+    defBtns.forEach(function (b) { b.classList.toggle('active', b.dataset.def === def); });
+    setDescription();
+  }
+  function renderWaterUnit() {
+    waterUnitBtns.forEach(function (b) { b.classList.toggle('active', b.dataset.unit === waterUnit); });
+  }
+
+  modeBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.dataset.mode;
+      try { localStorage.setItem(STORAGE_MODE, mode); } catch (e) {}
+      renderMode();
+    });
+  });
+  defBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      def = b.dataset.def;
+      try { localStorage.setItem(STORAGE_DEF, def); } catch (e) {}
+      renderDef();
+      recompute();
+    });
+  });
+  waterUnitBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      waterUnit = b.dataset.unit;
+      renderWaterUnit();
+      recompute();
+    });
+  });
+  drugUnitBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      drugUnitBtns.forEach(function (x) { x.classList.toggle('active', x === b); });
+    });
+  });
+  chipBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      waterUnit = 'l';
+      renderWaterUnit();
+      el('W').value = b.dataset.l;
+      touch('W');
+      recompute();
+    });
+  });
+  keys.forEach(function (k) {
+    el(k).addEventListener('input', function () {
+      touch(k);
+      recompute();
+    });
+  });
+
+  renderMode();
+  renderDef();
+  renderWaterUnit();
 })();
 
 /* ===== 機能5: 重さ変換 ===== */
